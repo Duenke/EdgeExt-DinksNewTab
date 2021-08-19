@@ -1,0 +1,22 @@
+{
+  "name": "Dinks New Tab",
+  "version": "1.0.0.0",
+  "manifest_version": 2,
+  "description": "A new tab replacement to keep your bookmarks in sync with your new tab!",
+  "permissions": [
+    "bookmarks"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "./index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "./build/bundle.js"
+      ]
+    }
+  ]
+}
