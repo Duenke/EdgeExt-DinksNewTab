@@ -1,6 +1,11 @@
 # EdgeExt-DinksNewTab
 Building a browser extension for Microsoft Edge (chromium).
 
+INFO:
+Attempting to run this project locally will fail with: `Uncaught Error: This script should only be loaded in a browser extension.`
+
+You can either supply mock data and comment out the call to `browser`, or build the project and load the `/Project` folder as an unpacked extension on Edge/Chrome.
+
 # svelte app
 
 This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
