@@ -1,65 +1,71 @@
 <script lang="ts">
 	import FolderCard from "./Components/FolderCard.svelte";
 	import type { BookmarkTreeNode } from "./Types/ChromeTypes";
+	import { mockTopLevelNodeTree} from "./Types/ChromeTypes"
 	import browser from "webextension-polyfill";
 
 	let bookmarkNodesData: Promise<BookmarkTreeNode[]> = getBrowserData();
 
 	async function getBrowserData(): Promise<BookmarkTreeNode[]> {
+		// const topLevelNodeTree = await Promise.resolve(mockTopLevelNodeTree);
 		const topLevelNodeTree = await browser.bookmarks.getTree();
 
-		const folderNodes: BookmarkTreeNode[] = 
-			getBookmarksFromNodeTree(topLevelNodeTree);
+		const folderNodes: BookmarkTreeNode[] = getBookmarksFromNodeTree(
+			topLevelNodeTree[0]
+		);
 
 		return folderNodes;
 	}
-		
+
 	function getBookmarksFromNodeTree(
-		nodeTree: BookmarkTreeNode[]
+		nodeTree: BookmarkTreeNode
 	): BookmarkTreeNode[] {
-		const folderNodes = nodeTree.filter((node) => !node.url);
-		const nestedFolderNodes = folderNodes.flatMap((node) =>
-			node.children.filter((node) => !node.url)
+		const thisNodesBookmarks = nodeTree.children.filter((node) => node.url);
+		const thisNodeWithJustBookmarks = {
+			...nodeTree,
+			children: thisNodesBookmarks,
+		};
+
+		const thisNodesFolders = nodeTree.children.filter((node) => !node.url);
+		const nestedNodeTrees = thisNodesFolders.flatMap((folder) =>
+			getBookmarksFromNodeTree(folder)
 		);
 
-		return nestedFolderNodes.length > 0
-			? getBookmarksFromNodeTree(nestedFolderNodes)
-			: folderNodes;
+		return [thisNodeWithJustBookmarks, ...nestedNodeTrees];
 	}
 </script>
 
 <main class="card-container">
-	<header class="header-bar" />
+	<header class="header z-bar" />
 	{#await bookmarkNodesData}
-		im getting out of shape...
+		<p>im getting out of shape...</p>
 	{:then nodesData}
 		{#each nodesData as folder}
 			{#if folder.children?.length > 0}
 				<FolderCard folderNodeData={folder} />
 			{/if}
 		{/each}
+	{:catch error}
+		<p style="color: red">{error.message}</p>
 	{/await}
-	<footer class="footer-bar" />
+	<footer class="footer z-bar" />
 </main>
 
 <style>
-	.header-bar {
+	.z-bar {
 		z-index: -1;
 		position: fixed;
-		top: 0;
 		height: 5%;
 		width: 100%;
 		background-color: white;
+	}
+	.header {
+		top: 0;
 		border-bottom: 2px solid rgb(229, 229, 229);
 	}
 
-	.footer-bar {
-		z-index: -1;
-		position: fixed;
+	.footer {
 		bottom: 0;
-		height: 5%;
-		width: 100%;
-		background-color: white;
 		border-top: 2px solid rgb(229, 229, 229);
 	}
 
