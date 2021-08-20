@@ -1,34 +1,40 @@
 <script lang="ts">
-	import FolderCard from "./Components/FolderCard.svelte";
-	import type { BookmarkTreeNode } from "./Types/ChromeTypes";
-	import { mockTopLevelNodeTree} from "./Types/ChromeTypes"
 	import browser from "webextension-polyfill";
 
-	let bookmarkNodesData: Promise<BookmarkTreeNode[]> = getBrowserData();
+	import FolderCard from "./Components/FolderCard.svelte";
+	import type { BookmarkTreeNode } from "./Types/ChromeTypes";
+	import { mockTopLevelNodeTree } from "./Types/ChromeTypes";
+
+	let folderNodeDataPromise: Promise<BookmarkTreeNode[]> = getBrowserData();
 
 	async function getBrowserData(): Promise<BookmarkTreeNode[]> {
-		// const topLevelNodeTree = await Promise.resolve(mockTopLevelNodeTree);
-		const topLevelNodeTree = await browser.bookmarks.getTree();
+		// const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(mockTopLevelNodeTree);
+		const topLevelNodeTree: BookmarkTreeNode[] =
+			await browser.bookmarks.getTree();
 
-		const folderNodes: BookmarkTreeNode[] = getBookmarksFromNodeTree(
+		const folderNodes: BookmarkTreeNode[] = getFoldersFromNodeTree(
 			topLevelNodeTree[0]
 		);
 
 		return folderNodes;
 	}
 
-	function getBookmarksFromNodeTree(
+	function getFoldersFromNodeTree(
 		nodeTree: BookmarkTreeNode
 	): BookmarkTreeNode[] {
-		const thisNodesBookmarks = nodeTree.children.filter((node) => node.url);
-		const thisNodeWithJustBookmarks = {
+		const thisNodesBookmarks: BookmarkTreeNode[] = nodeTree.children.filter(
+			(node) => node.url
+		);
+		const thisNodeWithJustBookmarks: BookmarkTreeNode = {
 			...nodeTree,
 			children: thisNodesBookmarks,
 		};
 
-		const thisNodesFolders = nodeTree.children.filter((node) => !node.url);
-		const nestedNodeTrees = thisNodesFolders.flatMap((folder) =>
-			getBookmarksFromNodeTree(folder)
+		const thisNodesFolders: BookmarkTreeNode[] = nodeTree.children.filter(
+			(node) => !node.url
+		);
+		const nestedNodeTrees: BookmarkTreeNode[] = thisNodesFolders.flatMap(
+			(folder) => getFoldersFromNodeTree(folder)
 		);
 
 		return [thisNodeWithJustBookmarks, ...nestedNodeTrees];
@@ -37,12 +43,12 @@
 
 <main class="card-container">
 	<header class="header z-bar" />
-	{#await bookmarkNodesData}
+	{#await folderNodeDataPromise}
 		<p>im getting out of shape...</p>
-	{:then nodesData}
-		{#each nodesData as folder}
-			{#if folder.children?.length > 0}
-				<FolderCard folderNodeData={folder} />
+	{:then folderNodeData}
+		{#each folderNodeData as folderData}
+			{#if folderData.children?.length > 0}
+				<FolderCard {folderData} />
 			{/if}
 		{/each}
 	{:catch error}

@@ -1,21 +1,18 @@
 <script lang="ts">
     import type { BookmarkTreeNode } from "../Types/ChromeTypes";
+    import BookmarkList from "./BookmarkList.svelte";
 
-    export let folderNodeData: BookmarkTreeNode;
+    export let folderData: BookmarkTreeNode;
 
-    let localBookmarks: BookmarkTreeNode[] = folderNodeData.children.filter(
+    let bookmarkData: BookmarkTreeNode[] = folderData.children.filter(
         (child) => child.url
     );
 </script>
 
 <article class="card">
-    <div class="card-title">{folderNodeData.title}</div>
+    <div class="card-title">{folderData.title}</div>
     <div class="card-body">
-        <ul class="bookmark-list">
-            {#each localBookmarks as bookmark}
-                <li class="bookmark-item"><a href={bookmark.url}>{bookmark.title}</a></li>
-            {/each}
-        </ul>
+        <BookmarkList {bookmarkData} />
     </div>
     <div class="card-accent" />
 </article>
@@ -29,13 +26,13 @@
         margin: 1em;
         background: rgb(255, 255, 255);
         border-radius: 2px;
-        box-shadow: rgb(0 0 0 / 13%) 0px 2px 4px;
+        box-shadow: 0px 2px 4px rgb(0 0 0 / 13%);
         transition: all 0.2s ease-in-out;
     }
 
     .card:hover {
         transform: scale(1.05);
-        box-shadow: rgb(0 0 0 / 13%) 0px 2px 8px;
+        box-shadow: 0px 2px 8px rgb(0 0 0 / 13%);
     }
 
     .card-title {
@@ -63,29 +60,5 @@
             rgb(216, 17, 143),
             rgb(0, 120, 212)
         );
-    }
-
-    .bookmark-list {
-        display: contents;
-        list-style: none;
-    }
-
-    .bookmark-list li::before {
-        content: "\200B";
-    }
-    
-    .bookmark-item {
-        margin: 0.2em;
-        font-size: 1.25em;
-        transition: all 0.2s ease-in-out;
-    }
-
-    .bookmark-item:hover {
-        transform: scale(1.05);
-    }
-
-    a {
-        text-decoration: none;
-        color: rgb(50, 49, 48);
     }
 </style>
