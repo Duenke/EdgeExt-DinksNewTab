@@ -44,6 +44,7 @@
             rgb(0, 120, 212)
         );
         border-bottom: 1px solid rgb(229, 229, 229);
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
