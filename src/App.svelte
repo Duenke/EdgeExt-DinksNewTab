@@ -12,9 +12,23 @@
 		const topLevelNodeTree: BookmarkTreeNode[] =
 			await browser.bookmarks.getTree();
 
-		const folderNodes: BookmarkTreeNode[] = getFoldersFromNodeTree(
+		let folderNodes: BookmarkTreeNode[] = getFoldersFromNodeTree(
 			topLevelNodeTree[0]
 		);
+
+		// I want to move system folders to the end.
+		[
+			"Favorites bar",
+			"Other favorites",
+			"Reading List Saves",
+			"Mobile favorites",
+		].forEach((systemNode) => {
+			const index = folderNodes.findIndex(
+				(node) => node.title == systemNode
+			);
+			const holder = folderNodes.splice(index, 1);
+			folderNodes = [...folderNodes, ...holder];
+		});
 
 		return folderNodes;
 	}
