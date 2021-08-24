@@ -10,8 +10,10 @@
     );
 </script>
 
-<article class="card" style="background-color: {$theme.accentColor1}; box-shadow: 0px 2px 4px {$theme.shadowColor};">
-    <div class="card-title" style="border-bottom: 1px solid {$theme.borderColor};">{folderData.title}</div>
+<article class="card">
+    <div class="card-title">
+        {folderData.title}
+    </div>
     <div class="card-body">
         <BookmarkList {bookmarkData} />
     </div>
@@ -27,6 +29,8 @@
         min-width: 20em;
         margin: 1em;
         border-radius: 2px;
+        box-shadow: 2px 2px 4px var(--theme-boxShadowColor);
+        background-color: var(--theme-accentColor1);
         transition: all 0.2s ease-in-out;
     }
 
@@ -45,6 +49,7 @@
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        border-bottom: 1px solid var(--theme-borderColor);
     }
 
     .card-body {

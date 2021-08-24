@@ -8,7 +8,7 @@
 <ul class="bookmark-list">
     {#each bookmarkData as bookmark}
         <li class="bookmark-item">
-            <a href={bookmark.url} style="color: {$theme.fontColor1};">{bookmark.title}</a>
+            <a href={bookmark.url}>{bookmark.title}</a>
         </li>
     {/each}
 </ul>
@@ -35,5 +35,6 @@
 
     a {
         text-decoration: none;
+        color: var(--theme-fontColor1);
     }
 </style>

@@ -59,38 +59,35 @@
 	}
 </script>
 
-<header
-	class="header z-bar"
-	style="background-color: {$theme.accentColor1};
-			border-bottom: 2px solid {$theme.borderColor};"
->
-	<DarkmodeToggle />
-</header>
-<main
-	class="card-container"
-	style="background-color: {$theme.backgroundColor};"
->
-	{#await folderNodeDataPromise}
-		<p>im getting out of shape...</p>
-	{:then folderNodeData}
-		{#each folderNodeData as folderData}
-			{#if folderData.children?.length > 0}
-				<FolderCard {folderData} />
-			{/if}
-		{/each}
-	{:catch error}
-		<p style="color: red">{error.message}</p>
-	{/await}
-</main>
-<footer
-	class="footer z-bar"
-	style="background-color: {$theme.accentColor1};
-			border-top: 2px solid {$theme.borderColor};"
->
-	<a href="https://github.com/Duenke/EdgeExt-DinksNewTab">
-		<img src="GitHub-Mark-32px.png" alt="GitHub link" />
-	</a>
-</footer>
+<div style="
+	--theme-accentColor1: {$theme.accentColor1};
+	--theme-backgroundColor: {$theme.backgroundColor};
+	--theme-boxShadowColor: {$theme.boxShadowColor};
+	--theme-borderColor: {$theme.borderColor};
+	--theme-fontColor1: {$theme.fontColor1};
+">
+	<header class="header z-bar">
+		<DarkmodeToggle />
+	</header>
+	<main class="card-container">
+		{#await folderNodeDataPromise}
+			<p>im getting out of shape...</p>
+		{:then folderNodeData}
+			{#each folderNodeData as folderData}
+				{#if folderData.children?.length > 0}
+					<FolderCard {folderData} />
+				{/if}
+			{/each}
+		{:catch error}
+			<p style="color: red">{error.message}</p>
+		{/await}
+	</main>
+	<footer class="footer z-bar">
+		<a href="https://github.com/Duenke/EdgeExt-DinksNewTab">
+			<img src="GitHub-Mark-32px.png" alt="GitHub link" />
+		</a>
+	</footer>
+</div>
 
 <style>
 	.z-bar {
@@ -102,13 +99,16 @@
 		align-items: center;
 		height: 5%;
 		width: 100%;
+		background-color: var(--theme-accentColor1);
 	}
 	.header {
 		top: 0;
+		border-bottom: 2px solid var(--theme-borderColor);
 	}
 
 	.footer {
 		bottom: 0;
+		border-top: 2px solid var(--theme-borderColor);
 	}
 
 	.card-container {
@@ -118,5 +118,7 @@
 		justify-content: center;
 		width: 100%;
 		height: 100%;
+		border-bottom: 2px solid var(--theme-borderColor);
+		background-color: var(--theme-backgroundColor);
 	}
 </style>
