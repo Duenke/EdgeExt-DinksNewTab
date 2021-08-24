@@ -1,5 +1,5 @@
 <script lang="ts">
-	// import browser from "webextension-polyfill";
+	import browser from "webextension-polyfill";
 
 	import { theme } from "./Stores/ThemeStore";
 	import type { BookmarkTreeNode } from "./Types/ChromeTypes";
@@ -10,11 +10,11 @@
 	let folderNodeDataPromise: Promise<BookmarkTreeNode[]> = getBrowserData();
 
 	async function getBrowserData(): Promise<BookmarkTreeNode[]> {
-		const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(
-			mockTopLevelNodeTree
-		);
-		// const topLevelNodeTree: BookmarkTreeNode[] =
-		// await browser.bookmarks.getTree();
+		// const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(
+		// 	mockTopLevelNodeTree
+		// );
+		const topLevelNodeTree: BookmarkTreeNode[] =
+		await browser.bookmarks.getTree();
 
 		let folderNodes: BookmarkTreeNode[] = getFoldersFromNodeTree(
 			topLevelNodeTree[0]
@@ -117,5 +117,6 @@
 		flex-flow: wrap;
 		justify-content: center;
 		width: 100%;
+		height: 100%;
 	}
 </style>
