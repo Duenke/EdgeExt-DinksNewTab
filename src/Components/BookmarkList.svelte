@@ -31,6 +31,7 @@
 
     .bookmark-item:hover {
         transform: scale(1.05);
+        font-weight: 600;
     }
 
     a {
