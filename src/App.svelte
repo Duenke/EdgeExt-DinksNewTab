@@ -59,7 +59,7 @@
 	}
 </script>
 
-<div style="
+<div class="theme-container" style="
 	--theme-accentColor1: {$theme.accentColor1};
 	--theme-backgroundColor: {$theme.backgroundColor};
 	--theme-boxShadowColor: {$theme.boxShadowColor};
@@ -91,7 +91,7 @@
 
 <style>
 	.z-bar {
-		z-index: 0;
+		z-index: 1;
 		position: fixed;
 		left: 0;
 		display: flex;
@@ -112,13 +112,13 @@
 	}
 
 	.card-container {
-		z-index: -1;
 		display: flex;
 		flex-flow: wrap;
 		justify-content: center;
-		width: 100%;
-		height: 100%;
-		border-bottom: 2px solid var(--theme-borderColor);
+	}
+	
+	.theme-container {
 		background-color: var(--theme-backgroundColor);
+		min-height: 100%;
 	}
 </style>

@@ -22,7 +22,7 @@
 
 <style>
     .card {
-        z-index: 1;
+        z-index: 2;
         display: flex;
         flex-direction: column;
         width: 20%;
