@@ -1,16 +1,20 @@
 <script lang="ts">
-	import browser from "webextension-polyfill";
+	// import browser from "webextension-polyfill";
 
-	import FolderCard from "./Components/FolderCard.svelte";
+	import { theme } from "./Stores/ThemeStore";
 	import type { BookmarkTreeNode } from "./Types/ChromeTypes";
 	import { mockTopLevelNodeTree } from "./Types/ChromeTypes";
+	import DarkmodeToggle from "./Components/DarkmodeToggle.svelte";
+	import FolderCard from "./Components/FolderCard.svelte";
 
 	let folderNodeDataPromise: Promise<BookmarkTreeNode[]> = getBrowserData();
 
 	async function getBrowserData(): Promise<BookmarkTreeNode[]> {
-		// const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(mockTopLevelNodeTree);
-		const topLevelNodeTree: BookmarkTreeNode[] =
-			await browser.bookmarks.getTree();
+		const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(
+			mockTopLevelNodeTree
+		);
+		// const topLevelNodeTree: BookmarkTreeNode[] =
+		// await browser.bookmarks.getTree();
 
 		let folderNodes: BookmarkTreeNode[] = getFoldersFromNodeTree(
 			topLevelNodeTree[0]
@@ -55,8 +59,17 @@
 	}
 </script>
 
-<main class="card-container">
-	<header class="header z-bar" />
+<header
+	class="header z-bar"
+	style="background-color: {$theme.accentColor1};
+			border-bottom: 2px solid {$theme.borderColor};"
+>
+	<DarkmodeToggle />
+</header>
+<main
+	class="card-container"
+	style="background-color: {$theme.backgroundColor};"
+>
 	{#await folderNodeDataPromise}
 		<p>im getting out of shape...</p>
 	{:then folderNodeData}
@@ -68,30 +81,41 @@
 	{:catch error}
 		<p style="color: red">{error.message}</p>
 	{/await}
-	<footer class="footer z-bar" />
 </main>
+<footer
+	class="footer z-bar"
+	style="background-color: {$theme.accentColor1};
+			border-top: 2px solid {$theme.borderColor};"
+>
+	<a href="https://github.com/Duenke/EdgeExt-DinksNewTab">
+		<img src="GitHub-Mark-32px.png" alt="GitHub link" />
+	</a>
+</footer>
 
 <style>
 	.z-bar {
-		z-index: -1;
+		z-index: 0;
 		position: fixed;
+		left: 0;
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: center;
 		height: 5%;
 		width: 100%;
-		background-color: white;
 	}
 	.header {
 		top: 0;
-		border-bottom: 2px solid rgb(229, 229, 229);
 	}
 
 	.footer {
 		bottom: 0;
-		border-top: 2px solid rgb(229, 229, 229);
 	}
 
 	.card-container {
+		z-index: -1;
 		display: flex;
 		flex-flow: wrap;
 		justify-content: center;
+		width: 100%;
 	}
 </style>

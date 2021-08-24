@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { theme } from "../Stores/ThemeStore";
     import type { BookmarkTreeNode } from "../Types/ChromeTypes";
     import BookmarkList from "./BookmarkList.svelte";
 
@@ -9,8 +10,8 @@
     );
 </script>
 
-<article class="card">
-    <div class="card-title">{folderData.title}</div>
+<article class="card" style="background-color: {$theme.accentColor1}; box-shadow: 0px 2px 4px {$theme.shadowColor};">
+    <div class="card-title" style="border-bottom: 1px solid {$theme.borderColor};">{folderData.title}</div>
     <div class="card-body">
         <BookmarkList {bookmarkData} />
     </div>
@@ -19,20 +20,18 @@
 
 <style>
     .card {
+        z-index: 1;
         display: flex;
         flex-direction: column;
         width: 20%;
         min-width: 20em;
         margin: 1em;
-        background: rgb(255, 255, 255);
         border-radius: 2px;
-        box-shadow: 0px 2px 4px rgb(0 0 0 / 13%);
         transition: all 0.2s ease-in-out;
     }
 
     .card:hover {
         transform: scale(1.05);
-        box-shadow: 0px 2px 8px rgb(0 0 0 / 13%);
     }
 
     .card-title {
@@ -43,7 +42,6 @@
             rgb(216, 17, 143),
             rgb(0, 120, 212)
         );
-        border-bottom: 1px solid rgb(229, 229, 229);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

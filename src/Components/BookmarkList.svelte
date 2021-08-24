@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { theme } from "../Stores/ThemeStore";
     import type { BookmarkTreeNode } from "../Types/ChromeTypes";
 
     export let bookmarkData: BookmarkTreeNode[];
@@ -7,7 +8,7 @@
 <ul class="bookmark-list">
     {#each bookmarkData as bookmark}
         <li class="bookmark-item">
-            <a href={bookmark.url}>{bookmark.title}</a>
+            <a href={bookmark.url} style="color: {$theme.fontColor1};">{bookmark.title}</a>
         </li>
     {/each}
 </ul>
@@ -29,12 +30,10 @@
     }
 
     .bookmark-item:hover {
-        text-shadow: 0px 2px 8px rgb(0 0 0 / 13%);
         transform: scale(1.05);
     }
 
     a {
         text-decoration: none;
-        color: rgb(50, 49, 48);
     }
 </style>
