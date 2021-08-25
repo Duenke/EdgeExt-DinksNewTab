@@ -14,7 +14,7 @@
 		// 	mockTopLevelNodeTree
 		// );
 		const topLevelNodeTree: BookmarkTreeNode[] =
-		await browser.bookmarks.getTree();
+			await browser.bookmarks.getTree();
 
 		let folderNodes: BookmarkTreeNode[] = getFoldersFromNodeTree(
 			topLevelNodeTree[0]
@@ -59,13 +59,16 @@
 	}
 </script>
 
-<div class="theme-container" style="
+<div
+	class="theme-container"
+	style="
 	--theme-accentColor1: {$theme.accentColor1};
 	--theme-backgroundColor: {$theme.backgroundColor};
 	--theme-boxShadowColor: {$theme.boxShadowColor};
 	--theme-borderColor: {$theme.borderColor};
 	--theme-fontColor1: {$theme.fontColor1};
-">
+"
+>
 	<header class="header z-bar">
 		<DarkmodeToggle />
 	</header>
@@ -84,7 +87,12 @@
 	</main>
 	<footer class="footer z-bar">
 		<a href="https://github.com/Duenke/EdgeExt-DinksNewTab">
-			<img src="GitHub-Mark-32px.png" alt="GitHub link" />
+			<img
+				src={$theme.isDarkmodeToggled
+					? "GitHub-Mark-Light-32px.png"
+					: "GitHub-Mark-32px.png"}
+				alt="GitHub link"
+			/>
 		</a>
 	</footer>
 </div>
@@ -116,7 +124,7 @@
 		flex-flow: wrap;
 		justify-content: center;
 	}
-	
+
 	.theme-container {
 		background-color: var(--theme-backgroundColor);
 		min-height: 100%;
