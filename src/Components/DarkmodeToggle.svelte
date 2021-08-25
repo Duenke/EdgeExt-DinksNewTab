@@ -1,52 +1,99 @@
-<script>
+<script lang="ts">
+    import browser from "webextension-polyfill";
     import { theme } from "../Stores/ThemeStore";
 
-    let isDarkmodeToggled = false;
+    let isDarkmodeToggled: boolean = false;
+
+    const key: string = "DinksNewTab_isDarkmodeToggled";
+
+    browser.storage.local
+        .get(key)
+        .then((data) => {
+            isDarkmodeToggled = data[key];
+        })
+        .catch((error) => {
+            console.error(error.message);
+        });
+
     $: {
         if (isDarkmodeToggled) {
             theme.setDarkmode();
-        }
-        else {
+            browser.storage.local.set({ DinksNewTab_isDarkmodeToggled: true });
+        } else {
             theme.setLightmode();
+            browser.storage.local.set({ DinksNewTab_isDarkmodeToggled: false });
         }
     }
 </script>
 
-<input type="checkbox" bind:checked={isDarkmodeToggled} />
+<label class="switch">
+    <input type="checkbox" bind:checked={isDarkmodeToggled} />
+    <span class="slider round" />
+</label>
 
 <style>
-    input {
+    /* The switch - the box around the slider */
+    .switch {
         position: relative;
-        appearance: none;
-        outline: none;
-        width: 50px;
-        height: 30px;
-        background-color: #ffffff;
-        border: 1px solid #d9dadc;
-        border-radius: 50px;
-        box-shadow: inset -20px 0 0 0 #ffffff;
-        transition-duration: 200ms;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        max-height: 100%;
+        max-width: 5%;
     }
 
-    input:after {
-        content: "";
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* The slider */
+    .slider {
         position: absolute;
-        top: 1px;
-        left: 1px;
-        width: 26px;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
         height: 26px;
-        background-color: transparent;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: rgb(255, 255, 255);
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+    }
+
+    input:checked + .slider {
+        background-color: rgb(0, 120, 212);
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px rgb(0, 120, 212);
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
         border-radius: 50%;
-        box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    input:checked {
-        border-color: rgb(0, 120, 212);
-        box-shadow: inset 20px 0 0 0 rgb(0, 120, 212);
-    }
-
-    input:checked:after {
-        left: 20px;
-        box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);
     }
 </style>

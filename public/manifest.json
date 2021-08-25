@@ -4,7 +4,8 @@
   "manifest_version": 2,
   "description": "A new tab replacement to keep your bookmarks in sync with your new tab!",
   "permissions": [
-    "bookmarks"
+    "bookmarks",
+    "storage"
   ],
   "chrome_url_overrides": {
     "newtab": "./index.html"
