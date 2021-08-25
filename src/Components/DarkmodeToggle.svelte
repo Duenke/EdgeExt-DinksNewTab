@@ -18,10 +18,8 @@
     $: {
         if (isDarkmodeToggled) {
             theme.setDarkmode();
-            browser.storage.local.set({ DinksNewTab_isDarkmodeToggled: true });
         } else {
             theme.setLightmode();
-            browser.storage.local.set({ DinksNewTab_isDarkmodeToggled: false });
         }
     }
 </script>

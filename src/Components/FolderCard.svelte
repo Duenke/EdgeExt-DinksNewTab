@@ -27,6 +27,7 @@
         flex-direction: column;
         width: 20%;
         min-width: 20em;
+        max-width: 40em;
         margin: 1em;
         border-radius: 2px;
         box-shadow: 2px 2px 4px var(--theme-boxShadowColor);
@@ -40,7 +41,7 @@
 
     .card-title {
         padding: 0.2em 0.5em;
-        font-size: 2em;
+        font-size: 2.5em;
         background: linear-gradient(
             to left,
             rgb(216, 17, 143),

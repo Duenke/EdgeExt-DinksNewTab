@@ -25,7 +25,7 @@
 
     .bookmark-item {
         margin: 0.2em;
-        font-size: 1.25em;
+        font-size: 1.75em;
         transition: all 0.2s ease-in-out;
     }
 
