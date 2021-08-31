@@ -1,7 +1,13 @@
 # EdgeExt-DinksNewTab
 Building a browser extension for Microsoft Edge (chromium).
 
-INFO:
+### TODO:
+- options modal
+- font size selector
+- drag & drop sorting
+- move theme toggle
+
+### Info:
 Attempting to run this project locally will fail with: `Uncaught Error: This script should only be loaded in a browser extension.`
 
 You can either use the mock data and comment out the import/call to `browser`, or build the project and load the `/Project` folder as an unpacked extension on Edge/Chrome.
