@@ -55,7 +55,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #ccc;
+        background-color: hsl(0, 0%, 90%);;
         -webkit-transition: 0.4s;
         transition: 0.4s;
     }
@@ -67,17 +67,17 @@
         width: 26px;
         left: 4px;
         bottom: 4px;
-        background-color: rgb(255, 255, 255);
+        background-color: hsl(0, 0%, 100%);
         -webkit-transition: 0.4s;
         transition: 0.4s;
     }
 
     input:checked + .slider {
-        background-color: rgb(0, 120, 212);
+        background-color: hsl(200, 100%, 40%);
     }
 
     input:focus + .slider {
-        box-shadow: 0 0 1px rgb(0, 120, 212);
+        box-shadow: 0 0 1px hsl(200, 100%, 40%);
     }
 
     input:checked + .slider:before {

@@ -42,8 +42,8 @@
         font-size: 2.5em;
         background: linear-gradient(
             to left,
-            rgb(216, 17, 143),
-            rgb(0, 120, 212)
+            hsl(322, 85%, 46%),
+            hsl(200, 100%, 40%)
         );
         background-clip: text;
         -webkit-background-clip: text;
@@ -60,8 +60,8 @@
         height: 3px;
         background: linear-gradient(
             to left,
-            rgb(216, 17, 143),
-            rgb(0, 120, 212)
+            hsl(322, 85%, 46%),
+            hsl(200, 100%, 40%)
         );
     }
 </style>

@@ -2,19 +2,19 @@
 import { writable } from 'svelte/store';
 
 const darkTheme = {
-    accentColor1: "rgb(20, 20, 20)",
-    backgroundColor: "rgb(10, 10, 10)",
-    boxShadowColor: "rgb(255 255 255 / 13%)",
-    borderColor: "rgb(30, 30, 30)",
-    fontColor1: "rgb(200, 200, 200)",
+    accentColor1: "hsl(0, 0%, 10%)",
+    backgroundColor: "hsl(0, 0%, 5%)",
+    boxShadowColor: "hsla(0, 0%, 100%, 50%)",
+    borderColor: "hsl(0, 0%, 10%)",
+    fontColor1: "hsl(0, 0%, 80%)",
     isDarkmodeToggled: true
 }
 const lightTheme = {
-    accentColor1: "rgb(255, 255, 255)",
-    backgroundColor: "rgb(235, 235, 235)",
-    boxShadowColor: "rgb(0 0 0 / 13%)",
-    borderColor: "rgb(229, 229, 229)",
-    fontColor1: "rgb(50, 49, 48)",
+    accentColor1: "hsl(0, 0%, 100%)",
+    backgroundColor: "hsl(0, 0%, 90%)",
+    boxShadowColor: "hsla(0, 0%, 0%, 15%)",
+    borderColor: "hsl(0, 0%, 90%)",
+    fontColor1: "hsl(30, 0%, 20%)",
     isDarkmodeToggled: false
 }
 
