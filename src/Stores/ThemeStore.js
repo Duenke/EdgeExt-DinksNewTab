@@ -1,4 +1,4 @@
-import browser from "webextension-polyfill";
+// import browser from "webextension-polyfill";
 import { writable } from 'svelte/store';
 
 const darkTheme = {
@@ -24,11 +24,11 @@ function createTheme() {
     return {
         subscribe,
         setDarkmode: () => {
-            browser.storage.local.set({ DinksNewTab_isDarkmodeToggled: true });
+            // browser.storage.local.set({ DinksNewTab_isDarkmodeToggled: true });
             set(darkTheme);
         },
         setLightmode: () => {
-            browser.storage.local.set({ DinksNewTab_isDarkmodeToggled: false });
+            // browser.storage.local.set({ DinksNewTab_isDarkmodeToggled: false });
             set(lightTheme);
         },
         set: () => { throw ("'Set' operation blocked for immutable store 'ThemeStore'.") },

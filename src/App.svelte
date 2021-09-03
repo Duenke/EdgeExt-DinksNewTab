@@ -1,20 +1,22 @@
 <script lang="ts">
-	import browser from "webextension-polyfill";
+	// import browser from "webextension-polyfill";
 
 	import { theme } from "./Stores/ThemeStore";
 	import type { BookmarkTreeNode } from "./Types/ChromeTypes";
 	import { mockTopLevelNodeTree } from "./Types/ChromeTypes";
 	import DarkmodeToggle from "./Components/DarkmodeToggle.svelte";
 	import FolderCard from "./Components/FolderCard.svelte";
+	import SettingsModal from "./Components/SettingsModal.svelte";
 
 	let folderNodeDataPromise: Promise<BookmarkTreeNode[]> = getBrowserData();
+	let isModalOpen: boolean = true;
 
 	async function getBrowserData(): Promise<BookmarkTreeNode[]> {
-		// const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(
-		// 	mockTopLevelNodeTree
-		// );
-		const topLevelNodeTree: BookmarkTreeNode[] =
-			await browser.bookmarks.getTree();
+		const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(
+			mockTopLevelNodeTree
+		);
+		// const topLevelNodeTree: BookmarkTreeNode[] =
+		// 	await browser.bookmarks.getTree();
 
 		let folderNodes: BookmarkTreeNode[] = getFoldersFromNodeTree(
 			topLevelNodeTree[0]
@@ -69,8 +71,11 @@
 	--theme-fontColor1: {$theme.fontColor1};
 "
 >
+	<SettingsModal bind:isModalOpen />
+
 	<header class="header z-bar">
-		<DarkmodeToggle />
+		<!-- <DarkmodeToggle /> -->
+		<button on:click={() => {isModalOpen = true}}>O</button>
 	</header>
 	<main class="card-container">
 		{#await folderNodeDataPromise}
@@ -97,7 +102,13 @@
 	</footer>
 </div>
 
-<style>
+<style>	
+	.theme-container {
+		min-height: 100%;
+		min-width: 100%;
+		background-color: var(--theme-backgroundColor);
+	}
+
 	.z-bar {
 		z-index: 1;
 		position: fixed;
@@ -109,6 +120,7 @@
 		width: 100%;
 		background-color: var(--theme-accentColor1);
 	}
+
 	.header {
 		top: 0;
 		border-bottom: 2px solid var(--theme-borderColor);
@@ -123,10 +135,5 @@
 		display: flex;
 		flex-flow: wrap;
 		justify-content: center;
-	}
-
-	.theme-container {
-		background-color: var(--theme-backgroundColor);
-		min-height: 100%;
 	}
 </style>

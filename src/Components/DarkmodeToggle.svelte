@@ -1,19 +1,19 @@
 <script lang="ts">
-    import browser from "webextension-polyfill";
+    // import browser from "webextension-polyfill";
     import { theme } from "../Stores/ThemeStore";
 
     let isDarkmodeToggled: boolean = false;
 
     const key: string = "DinksNewTab_isDarkmodeToggled";
 
-    browser.storage.local
-        .get(key)
-        .then((data) => {
-            isDarkmodeToggled = data[key];
-        })
-        .catch((error) => {
-            console.error(error.message);
-        });
+    // browser.storage.local
+    //     .get(key)
+    //     .then((data) => {
+    //         isDarkmodeToggled = data[key];
+    //     })
+    //     .catch((error) => {
+    //         console.error(error.message);
+    //     });
 
     $: {
         if (isDarkmodeToggled) {

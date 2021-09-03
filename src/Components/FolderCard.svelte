@@ -25,9 +25,7 @@
         z-index: 2;
         display: flex;
         flex-direction: column;
-        width: 20%;
-        min-width: 20em;
-        max-width: 40em;
+        width: clamp(20rem, 20%, 40rem);
         margin: 1em;
         border-radius: 2px;
         box-shadow: 2px 2px 4px var(--theme-boxShadowColor);
