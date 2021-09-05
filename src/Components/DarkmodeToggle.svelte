@@ -2,7 +2,7 @@
     // import browser from "webextension-polyfill";
     import { theme } from "../Stores/ThemeStore";
 
-    let isDarkmodeToggled: boolean = false;
+    let isDarkmodeToggled: boolean = $theme.isDarkmodeToggled;
 
     const key: string = "DinksNewTab_isDarkmodeToggled";
 

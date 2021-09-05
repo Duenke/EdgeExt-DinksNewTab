@@ -1,15 +1,16 @@
 <script lang="ts">
 	// import browser from "webextension-polyfill";
 
-	import { theme } from "./Stores/ThemeStore";
-	import type { BookmarkTreeNode } from "./Types/ChromeTypes";
 	import { mockTopLevelNodeTree } from "./Types/ChromeTypes";
-	import DarkmodeToggle from "./Components/DarkmodeToggle.svelte";
+	import { theme } from "./Stores/ThemeStore";
+	import SettingsPanel from "./Components/SettingsPanel.svelte";
+	import Header from "./Components/Header.svelte";
 	import FolderCard from "./Components/FolderCard.svelte";
-	import SettingsModal from "./Components/SettingsModal.svelte";
+	import Footer from "./Components/Footer.svelte";
+	import type { BookmarkTreeNode } from "./Types/ChromeTypes";
 
 	let folderNodeDataPromise: Promise<BookmarkTreeNode[]> = getBrowserData();
-	let isModalOpen: boolean = true;
+	let isModalOpen: boolean = false;
 
 	async function getBrowserData(): Promise<BookmarkTreeNode[]> {
 		const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(
@@ -39,9 +40,7 @@
 		return folderNodes;
 	}
 
-	function getFoldersFromNodeTree(
-		nodeTree: BookmarkTreeNode
-	): BookmarkTreeNode[] {
+	function getFoldersFromNodeTree(nodeTree: BookmarkTreeNode): BookmarkTreeNode[] {
 		const thisNodesBookmarks: BookmarkTreeNode[] = nodeTree.children.filter(
 			(node) => node.url
 		);
@@ -71,12 +70,9 @@
 	--theme-fontColor1: {$theme.fontColor1};
 "
 >
-	<SettingsModal bind:isModalOpen />
+	<SettingsPanel bind:isModalOpen />
 
-	<header class="header z-bar">
-		<!-- <DarkmodeToggle /> -->
-		<button on:click={() => {isModalOpen = true}}>O</button>
-	</header>
+	<Header bind:isModalOpen />
 	<main class="card-container">
 		{#await folderNodeDataPromise}
 			<p>im getting out of shape...</p>
@@ -90,45 +86,14 @@
 			<p style="color: red">{error.message}</p>
 		{/await}
 	</main>
-	<footer class="footer z-bar">
-		<a href="https://github.com/Duenke/EdgeExt-DinksNewTab">
-			<img
-				src={$theme.isDarkmodeToggled
-					? "GitHub-Mark-Light-32px.png"
-					: "GitHub-Mark-32px.png"}
-				alt="GitHub link"
-			/>
-		</a>
-	</footer>
+	<Footer />
 </div>
 
-<style>	
+<style>
 	.theme-container {
-		min-height: 100%;
-		min-width: 100%;
+		min-height: 100vh;
+		min-width: 100vw;
 		background-color: var(--theme-backgroundColor);
-	}
-
-	.z-bar {
-		z-index: 1;
-		position: fixed;
-		left: 0;
-		display: flex;
-		flex-direction: row-reverse;
-		align-items: center;
-		height: 5%;
-		width: 100%;
-		background-color: var(--theme-accentColor1);
-	}
-
-	.header {
-		top: 0;
-		border-bottom: 2px solid var(--theme-borderColor);
-	}
-
-	.footer {
-		bottom: 0;
-		border-top: 2px solid var(--theme-borderColor);
 	}
 
 	.card-container {

@@ -2,9 +2,9 @@
 import { writable } from 'svelte/store';
 
 const darkTheme = {
-    accentColor1: "hsl(0, 0%, 10%)",
+    accentColor1: "hsl(0, 0%, 8%)",
     backgroundColor: "hsl(0, 0%, 5%)",
-    boxShadowColor: "hsla(0, 0%, 100%, 50%)",
+    boxShadowColor: "hsla(0, 0%, 100%, 15%)",
     borderColor: "hsl(0, 0%, 10%)",
     fontColor1: "hsl(0, 0%, 80%)",
     isDarkmodeToggled: true
