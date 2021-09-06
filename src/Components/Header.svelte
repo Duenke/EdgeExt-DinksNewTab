@@ -1,14 +1,15 @@
 <script lang="ts">
     import { theme } from "../Stores/ThemeStore";
+    import { ThemeSelections } from "../Types/ThemeTypes";
 
     export let isModalOpen: boolean;
 </script>
 
 <header>
     <img on:click={() => {isModalOpen = true}}
-    src={$theme.isDarkmodeToggled
-        ? "light_gear.png"
-        : "dark_gear.png"}
+    src={$theme.themeName == ThemeSelections.LightTheme
+        ? "dark_gear.png"
+        : "light_gear.png"}
         alt="Settings Panel" 
     height="32px" width="32px" />
 </header>

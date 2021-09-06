@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { theme } from "../Stores/ThemeStore";
     import type { BookmarkTreeNode } from "../Types/ChromeTypes";
 
     export let bookmarkData: BookmarkTreeNode[];

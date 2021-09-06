@@ -1,13 +1,14 @@
 <script lang="ts">
     import { theme } from "../Stores/ThemeStore";
+    import { ThemeSelections } from "../Types/ThemeTypes";
 </script>
 
 <footer>
     <a href="https://github.com/Duenke/EdgeExt-DinksNewTab">
         <img
-            src={$theme.isDarkmodeToggled
-                ? "GitHub-Mark-Light-32px.png"
-                : "GitHub-Mark-32px.png"}
+            src={$theme.themeName == ThemeSelections.LightTheme
+                ? "GitHub-Mark-32px.png"
+                : "GitHub-Mark-Light-32px.png"}
             alt="GitHub link"
         />
     </a>

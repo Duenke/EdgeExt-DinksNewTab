@@ -60,20 +60,34 @@
         min-height: 100%;
         min-width: 100%;
         background-color: hsla(0, 0%, 0%, 50%);
+        backdrop-filter: blur(1px);
     }
 
     .modal {
         z-index: 11;
         position: fixed;
         top: 5rem;
+        bottom: 5rem;
         left: 15%;
         width: 70%;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
         padding: 1rem;
+        border-radius: 0.75rem;
         background-color: var(--theme-accentColor1);
         color: var(--theme-fontColor1);
     }
 
+    .modal::-webkit-scrollbar {
+        display: none;
+    }
+
     :global([slot="modal-header"]) {
+        position: sticky;
+        top: -1rem;
+        left: 0;
+        background-color: var(--theme-accentColor1);
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -87,6 +101,10 @@
     }
 
     :global([slot="modal-footer"]) {
+        position: sticky;
+        bottom: -1rem;
+        left: 0;
+        background-color: var(--theme-accentColor1);
         display: flex;
         flex-direction: row;
         justify-content: space-between;

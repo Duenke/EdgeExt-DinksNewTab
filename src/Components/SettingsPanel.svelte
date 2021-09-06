@@ -1,5 +1,5 @@
 <script lang="ts">
-    import DarkmodeToggle from "./DarkmodeToggle.svelte";
+    import ThemeSelection from "./ThemeSelection.svelte";
     import ModalSlots from "./ModalSlots.svelte";
 
     export let isModalOpen: boolean;
@@ -15,7 +15,7 @@
         <button on:click={close}>X</button>
     </div>
     <div slot="modal-body">
-        <DarkmodeToggle />
+        <ThemeSelection />
         <h1>body here</h1>
         <h1>body here</h1>
         <h1>body here</h1>

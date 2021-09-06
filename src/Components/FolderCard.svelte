@@ -57,6 +57,7 @@
 
     .card-accent {
         height: 3px;
+        border-radius: 2px;
         background: linear-gradient(
             to left,
             hsl(322, 85%, 46%),
