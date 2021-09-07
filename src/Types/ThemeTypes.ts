@@ -1,9 +1,9 @@
 export const ThemeKey = "DinksNewTab_ThemeSelection";
 
 export enum ThemeSelections {
-    "DarkTheme",
-    "LightTheme",
-    "HighContrastTheme"
+    "Dark",
+    "Light",
+    "HighContrast"
 }
 
 export interface ThemeContract {

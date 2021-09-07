@@ -1,41 +1,40 @@
 <script lang="ts">
-	// import browser from "webextension-polyfill";
+	import browser from "webextension-polyfill";
+	import { onMount } from "svelte";
 
-	import { mockTopLevelNodeTree } from "./Types/ChromeTypes";
 	import { theme } from "./Stores/ThemeStore";
+	import { sort } from "./Stores/SortStore";
+
+	import { SortKey } from "./Types/SortTypes";
+	import { ThemeKey } from "./Types/ThemeTypes";
+	import type { BookmarkTreeNode } from "./Types/ChromeTypes";
+	// import { mockTopLevelNodeTree } from "./Types/ChromeTypes";
+
 	import SettingsPanel from "./Components/SettingsPanel.svelte";
 	import Header from "./Components/Header.svelte";
 	import FolderCard from "./Components/FolderCard.svelte";
 	import Footer from "./Components/Footer.svelte";
-	import type { BookmarkTreeNode } from "./Types/ChromeTypes";
 
-	let folderNodeDataPromise: Promise<BookmarkTreeNode[]> = getBrowserData();
 	let isModalOpen: boolean = false;
+	let folderNodeDataPromise: Promise<BookmarkTreeNode[]>;
+
+	$: {
+		$sort.sortName;
+		folderNodeDataPromise = getBrowserData();
+	}
 
 	async function getBrowserData(): Promise<BookmarkTreeNode[]> {
-		const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(
-			mockTopLevelNodeTree
-		);
-		// const topLevelNodeTree: BookmarkTreeNode[] =
-		// 	await browser.bookmarks.getTree();
+		// const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(
+		// 	mockTopLevelNodeTree
+		// );
+		const topLevelNodeTree: BookmarkTreeNode[] =
+			await browser.bookmarks.getTree();
 
 		let folderNodes: BookmarkTreeNode[] = getFoldersFromNodeTree(
 			topLevelNodeTree[0]
 		);
 
-		// I want to move system folders to the end.
-		[
-			"Favorites bar",
-			"Other favorites",
-			"Reading List Saves",
-			"Mobile favorites",
-		].forEach((systemNode) => {
-			const index = folderNodes.findIndex(
-				(node) => node.title == systemNode
-			);
-			const holder = folderNodes.splice(index, 1);
-			folderNodes = [...folderNodes, ...holder];
-		});
+		folderNodes = $sort.sortFunction(folderNodes);
 
 		return folderNodes;
 	}
@@ -58,6 +57,26 @@
 
 		return [thisNodeWithJustBookmarks, ...nestedNodeTrees];
 	}
+
+	onMount(() => {
+		browser.storage.local
+        .get(SortKey)
+        .then((data) => {
+            sort.setSortSelection(data[SortKey]);
+        })
+        .catch((error) => {
+            console.error(error.message);
+        });
+
+		browser.storage.local
+        .get(ThemeKey)
+        .then((data) => {
+            theme.setThemeSelection(data[ThemeKey]);
+        })
+        .catch((error) => {
+            console.error(error.message);
+        });
+	})
 </script>
 
 <div

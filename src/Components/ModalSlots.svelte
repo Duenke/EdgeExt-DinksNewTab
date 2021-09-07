@@ -64,16 +64,17 @@
     }
 
     .modal {
+        --modal-padding: 1rem;
         z-index: 11;
         position: fixed;
         top: 5rem;
-        bottom: 5rem;
         left: 15%;
-        width: 70%;
+        width: 70vw;
+        max-height: calc(100vh - 10rem);
         overflow-y: scroll;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        padding: 1rem;
+        padding: var(--modal-padding);
         border-radius: 0.75rem;
         background-color: var(--theme-accentColor1);
         color: var(--theme-fontColor1);
@@ -84,13 +85,14 @@
     }
 
     :global([slot="modal-header"]) {
+        z-index: 12;
         position: sticky;
-        top: -1rem;
+        top: calc(var(--modal-padding) * -1);
         left: 0;
-        background-color: var(--theme-accentColor1);
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        background-color: var(--theme-accentColor1);
         border-bottom: 2px solid var(--theme-borderColor);
     }
 
@@ -101,13 +103,14 @@
     }
 
     :global([slot="modal-footer"]) {
+        z-index: 12;
         position: sticky;
-        bottom: -1rem;
+        bottom: calc(var(--modal-padding) * -1);
         left: 0;
-        background-color: var(--theme-accentColor1);
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        background-color: var(--theme-accentColor1);
         border-top: 2px solid var(--theme-borderColor);
     }
 </style>

@@ -7,7 +7,7 @@
 
 <header>
     <img on:click={() => {isModalOpen = true}}
-    src={$theme.themeName == ThemeSelections.LightTheme
+    src={$theme.themeName == ThemeSelections.Light
         ? "dark_gear.png"
         : "light_gear.png"}
         alt="Settings Panel" 

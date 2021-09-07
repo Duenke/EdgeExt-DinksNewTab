@@ -1,4 +1,4 @@
-// import browser from "webextension-polyfill";
+import browser from "webextension-polyfill";
 import { writable } from 'svelte/store';
 
 import { ThemeKey, ThemeContract, ThemeSelections } from "../Types/ThemeTypes";
@@ -9,7 +9,7 @@ const lightTheme: ThemeContract = {
     boxShadowColor: "hsla(0, 0%, 0%, 15%)",
     borderColor: "hsl(0, 0%, 90%)",
     fontColor1: "hsl(30, 0%, 20%)",
-    themeName: ThemeSelections.LightTheme
+    themeName: ThemeSelections.Light
 }
 const darkTheme: ThemeContract = {
     accentColor1: "hsl(0, 0%, 8%)",
@@ -17,7 +17,7 @@ const darkTheme: ThemeContract = {
     boxShadowColor: "hsla(0, 0%, 100%, 15%)",
     borderColor: "hsl(0, 0%, 10%)",
     fontColor1: "hsl(0, 0%, 80%)",
-    themeName: ThemeSelections.DarkTheme
+    themeName: ThemeSelections.Dark
 }
 const highContrastTheme: ThemeContract = {
     accentColor1: "hsl(0, 0%, 0%)",
@@ -25,7 +25,7 @@ const highContrastTheme: ThemeContract = {
     boxShadowColor: "hsla(0, 0%, 100%, 100%)",
     borderColor: "hsl(0, 0%, 100%)",
     fontColor1: "hsl(0, 0%, 100%)",
-    themeName: ThemeSelections.HighContrastTheme
+    themeName: ThemeSelections.HighContrast
 }
 
 function createTheme() {
@@ -36,21 +36,23 @@ function createTheme() {
         setThemeSelection: (themeName) => {
             const themeKey = ThemeKey;
             const storageObject = {};
+            storageObject[themeKey] = themeName;
+
             switch (themeName) {
-                case ThemeSelections.LightTheme:
-                    // browser.storage.local.set(storageObject[themeKey] = themeName);
+                case ThemeSelections.Light:
+                    browser.storage.local.set(storageObject);
                     set(lightTheme);
                     break;
-                case ThemeSelections.DarkTheme:
-                    // browser.storage.local.set(storageObject[themeKey] = themeName);
+                case ThemeSelections.Dark:
+                    browser.storage.local.set(storageObject);
                     set(darkTheme);
                     break;
-                case ThemeSelections.HighContrastTheme:
-                    // browser.storage.local.set(storageObject[themeKey] = themeName);
+                case ThemeSelections.HighContrast:
+                    browser.storage.local.set(storageObject);
                     set(highContrastTheme);
                     break;
                 default:
-                    console.error("Failed to get and match a ThemeSelection! Defaulting to LightTheme.");
+                    console.warn("Failed to get and match a ThemeSelection! Defaulting to Light Theme.");
                     set(lightTheme);
             }
         },

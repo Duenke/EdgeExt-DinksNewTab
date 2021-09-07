@@ -6,7 +6,7 @@
 <footer>
     <a href="https://github.com/Duenke/EdgeExt-DinksNewTab">
         <img
-            src={$theme.themeName == ThemeSelections.LightTheme
+            src={$theme.themeName == ThemeSelections.Light
                 ? "GitHub-Mark-32px.png"
                 : "GitHub-Mark-Light-32px.png"}
             alt="GitHub link"
