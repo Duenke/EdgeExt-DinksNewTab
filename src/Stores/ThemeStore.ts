@@ -15,7 +15,7 @@ const darkTheme: ThemeContract = {
     accentColor1: "hsl(0, 0%, 8%)",
     backgroundColor: "hsl(0, 0%, 5%)",
     boxShadowColor: "hsla(0, 0%, 100%, 15%)",
-    borderColor: "hsl(0, 0%, 10%)",
+    borderColor: "hsl(0, 0%, 15%)",
     fontColor1: "hsl(0, 0%, 80%)",
     themeName: ThemeSelections.Dark
 }

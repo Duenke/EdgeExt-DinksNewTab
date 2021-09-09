@@ -1,9 +1,8 @@
 <script lang="ts">
     import { sort } from "../Stores/SortStore";
-    import { SortKey, SortSelections } from "../Types/SortTypes";
+    import { SortSelections } from "../Types/SortTypes";
 
     let sortSelection: SortSelections = $sort.sortName;
-    const sortKey: string = SortKey;
     const sortSelections: SortSelections[] = [
         SortSelections["Default"],
         SortSelections["SystemFoldersLast"],
@@ -40,7 +39,7 @@
     }
 
     label {
-        font-size: 1.5rem;
+        font-size: var(--font-size);
     }
 
     input {

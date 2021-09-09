@@ -25,7 +25,7 @@
         display: flex;
         flex-direction: column;
         width: clamp(20rem, 20%, 40rem);
-        margin: 1em;
+        margin: 1rem;
         border-radius: 2px;
         box-shadow: 2px 2px 4px var(--theme-boxShadowColor);
         background-color: var(--theme-accentColor1);
@@ -37,8 +37,8 @@
     }
 
     .card-title {
-        padding: 0.2em 0.5em;
-        font-size: 2.5em;
+        padding: 0.2rem 0.5rem;
+        font-size: var(--header-size);
         background: linear-gradient(
             to left,
             hsl(322, 85%, 46%),
@@ -52,7 +52,7 @@
 
     .card-body {
         flex-grow: 1;
-        padding: 0 1em;
+        padding: 0 1rem;
     }
 
     .card-accent {

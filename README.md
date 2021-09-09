@@ -5,8 +5,8 @@ Building a browser extension for Microsoft Edge (chromium).
 [Dinks New Tab](https://microsoftedge.microsoft.com/addons/detail/dinks-new-tab/kpjhoedlohmjcmmjhbpigommekpamkaa)
 
 ### TODO:
-- font size selector
-- drag & drop sorting
+- HighContrast Theme
+- Custom Sort
 
 ### Info:
 Attempting to run this project locally will fail with: `Uncaught Error: This script should only be loaded in a browser extension.`

@@ -4,9 +4,11 @@
 
 	import { theme } from "./Stores/ThemeStore";
 	import { sort } from "./Stores/SortStore";
+	import { font, header } from "./Stores/FontStore";
 
 	import { SortKey } from "./Types/SortTypes";
 	import { ThemeKey } from "./Types/ThemeTypes";
+	import { FontKey, HeaderKey } from "./Types/FontTypes";
 	import type { BookmarkTreeNode, mockTopLevelNodeTree } from "./Types/ChromeTypes";
 
 	import SettingsPanel from "./Components/SettingsPanel.svelte";
@@ -75,6 +77,24 @@
         .catch((error) => {
             console.error(error.message);
         });
+
+		browser.storage.local
+        .get(FontKey)
+        .then((data) => {
+            font.set(data[FontKey]);
+        })
+        .catch((error) => {
+            console.error(error.message);
+        });
+
+		browser.storage.local
+        .get(HeaderKey)
+        .then((data) => {
+            header.set(data[HeaderKey]);
+        })
+        .catch((error) => {
+            console.error(error.message);
+        });
 	})
 </script>
 
@@ -86,6 +106,8 @@
 	--theme-boxShadowColor: {$theme.boxShadowColor};
 	--theme-borderColor: {$theme.borderColor};
 	--theme-fontColor1: {$theme.fontColor1};
+	--font-size: {$font}rem;
+	--header-size: {$header}rem;
 "
 >
 	<SettingsPanel bind:isModalOpen />

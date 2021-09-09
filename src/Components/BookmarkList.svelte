@@ -23,8 +23,8 @@
     }
 
     .bookmark-item {
-        margin: 0.2em;
-        font-size: 1.75em;
+        margin: 0.2rem;
+        font-size: var(--font-size);
         transition: all 0.2s ease-in-out;
     }
 

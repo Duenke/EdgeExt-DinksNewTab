@@ -1,5 +1,6 @@
 <script lang="ts">
     import ModalSlots from "./ModalSlots.svelte";
+    import FontSelection from "./FontSelection.svelte";
     import ThemeSelection from "./ThemeSelection.svelte";
     import SortSelection from "./SortSelection.svelte";
 
@@ -16,23 +17,28 @@
         <button on:click={close}>X</button>
     </div>
     <div slot="modal-body">
+        <FontSelection />
         <ThemeSelection />
         <SortSelection />
     </div>
     <div slot="modal-footer">
-        <h1>footer here</h1>
+        <br />
     </div>
 </ModalSlots>
 
 <style>
+    h1 {
+        font-size: var(--header-size);
+    }
+
     button {
         min-height: 2rem;
         min-width: 2rem;
         margin-top: auto;
         margin-bottom: auto;
-        border-radius: 2rem;
+        border-radius: 50%;
         font-weight: 600;
-        font-size: 1rem;
+        font-size: var(--header-size);
         border: 2px solid var(--theme-fontColor1);
         color: var(--theme-fontColor1);
         background-color: var(--theme-accentColor1);
