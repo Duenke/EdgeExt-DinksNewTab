@@ -3,8 +3,10 @@ export const SortKey = "DinksNewTab_SortSelection";
 export enum SortSelections {
     "Default",
     "SystemFoldersLast",
-    "AlphaNumeric",
-    "NumericAlpha",
+    "0 -> Z",
+    "Z -> 0",
+    "New -> Old",
+    "Old -> New",
     "Custom"
 }
 

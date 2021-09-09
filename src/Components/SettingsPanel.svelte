@@ -1,7 +1,7 @@
 <script lang="ts">
     import ModalSlots from "./ModalSlots.svelte";
     import ThemeSelection from "./ThemeSelection.svelte";
-    import FolderSortSelection from "./FolderSortSelection.svelte";
+    import SortSelection from "./SortSelection.svelte";
 
     export let isModalOpen: boolean;
 
@@ -17,7 +17,7 @@
     </div>
     <div slot="modal-body">
         <ThemeSelection />
-        <FolderSortSelection />
+        <SortSelection />
     </div>
     <div slot="modal-footer">
         <h1>footer here</h1>

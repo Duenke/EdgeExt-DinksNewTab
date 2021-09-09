@@ -1,11 +1,12 @@
 # EdgeExt-DinksNewTab
 Building a browser extension for Microsoft Edge (chromium).
 
+## Live Extension Marketplace App
+[Dinks New Tab](https://microsoftedge.microsoft.com/addons/detail/dinks-new-tab/kpjhoedlohmjcmmjhbpigommekpamkaa)
+
 ### TODO:
-- options modal
 - font size selector
 - drag & drop sorting
-- move theme toggle
 
 ### Info:
 Attempting to run this project locally will fail with: `Uncaught Error: This script should only be loaded in a browser extension.`

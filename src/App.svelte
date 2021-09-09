@@ -7,8 +7,7 @@
 
 	import { SortKey } from "./Types/SortTypes";
 	import { ThemeKey } from "./Types/ThemeTypes";
-	import type { BookmarkTreeNode } from "./Types/ChromeTypes";
-	// import { mockTopLevelNodeTree } from "./Types/ChromeTypes";
+	import type { BookmarkTreeNode, mockTopLevelNodeTree } from "./Types/ChromeTypes";
 
 	import SettingsPanel from "./Components/SettingsPanel.svelte";
 	import Header from "./Components/Header.svelte";

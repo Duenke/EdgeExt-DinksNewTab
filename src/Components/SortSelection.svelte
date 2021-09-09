@@ -5,11 +5,13 @@
     let sortSelection: SortSelections = $sort.sortName;
     const sortKey: string = SortKey;
     const sortSelections: SortSelections[] = [
-        SortSelections.Default,
-        SortSelections.SystemFoldersLast,
-        SortSelections.AlphaNumeric,
-        SortSelections.NumericAlpha,
-        SortSelections.Custom
+        SortSelections["Default"],
+        SortSelections["SystemFoldersLast"],
+        SortSelections["0 -> Z"],
+        SortSelections["Z -> 0"],
+        SortSelections["New -> Old"],
+        SortSelections["Old -> New"],
+        // TODO: SortSelections["Custom"]
     ];
 
     $: sort.setSortSelection(sortSelection);
