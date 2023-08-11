@@ -1,38 +1,29 @@
-# create-svelte
+# EdgeExt-DinksNewTab
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Building a browser extension for Microsoft Edge (chromium).
 
-## Creating a project
+## Live Extension Marketplace App
 
-If you're seeing this, you've probably already done this step. Congrats!
+[Dinks New Tab](https://microsoftedge.microsoft.com/addons/detail/dinks-new-tab/kpjhoedlohmjcmmjhbpigommekpamkaa)
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+### TODO
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- HighContrast Theme
+- Custom Sort
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Running this app locally will fail because you won't have access to the Chrome APIs.  
+Instead, build the app and [load the extension as an unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
 
 ```bash
-npm run dev
+# Install the dependencies.
+C:\GitHub\EdgeExt-DinksNewTab> npm i
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# Build the app.
+C:\GitHub\EdgeExt-DinksNewTab> npm run build
 ```
 
-## Building
+## Info
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+This app is built with [Sveltekit](https://kit.svelte.dev/), [sveltekit-adapter-chrome-extension](https://github.com/michmich112/sveltekit-adapter-chrome-extension), [Tailwind CSS](https://tailwindcss.com/docs/installation), and [Daisy UI](https://daisyui.com/components/).

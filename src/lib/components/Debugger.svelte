@@ -1,13 +1,15 @@
 <script lang="ts">
-	import { onMount } from "svelte"
-
-	let bookmarks: any[]
 	console.log("Debugger Component Loaded")
 
-	onMount(async () => {
-		const bookmarks = await chrome.bookmarks.getTree()
-		console.log("Debugger Component Mounted")
-	})
+	import { getBrowserData } from "$lib/functions/ChromeApis"
+	import type { BookmarkTreeNode } from "$lib/types/ChromeTypes"
+
+	let folderNodeDataPromise: Promise<BookmarkTreeNode[]>
+
+	$: {
+		// $sort.sortName;
+		folderNodeDataPromise = getBrowserData()
+	}
 </script>
 
 <dialog class="modal modal-open">
@@ -16,6 +18,10 @@
 		class="modal-box w-11/12 max-w-5xl"
 	>
 		<h3 class="font-bold text-lg">Debugger Component</h3>
-		<pre class="prose">{JSON.stringify(bookmarks, null, 2)}</pre>
+		{#await folderNodeDataPromise}
+			loading debugger data...
+		{:then data}
+			<pre class="prose">{JSON.stringify(data, null, 2)}</pre>
+		{/await}
 	</form>
 </dialog>

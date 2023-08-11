@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { onMount } from "svelte"
-
 	import Debugger from "$lib/components/Debugger.svelte"
 	import FolderCard from "$lib/components/FolderCard.svelte"
 	import { getBrowserData } from "$lib/functions/ChromeApis"
@@ -14,9 +12,9 @@
 	}
 </script>
 
-<!-- <Debugger /> -->
+<Debugger />
 
-<div class="h-screen w-screen bg-slate-200">
+<!-- <div class="h-screen w-screen bg-slate-200">
 	<main class="flex flex-wrap items-center gap-1">
 		{#await folderNodeDataPromise}
 			<p>im getting out of shape...</p>
@@ -30,4 +28,4 @@
 			<p style="color: red">{error.message}</p>
 		{/await}
 	</main>
-</div>
+</div> -->
