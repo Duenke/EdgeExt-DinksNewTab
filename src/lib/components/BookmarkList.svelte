@@ -6,13 +6,13 @@
 
 <ul class="bookmark-list">
 	{#each bookmarkData as bookmark}
-		<li class="bookmark-item">
+		<li class="bookmark-item text-base-content">
 			<a href="{bookmark.url}">{bookmark.title}</a>
 		</li>
 	{/each}
 </ul>
-<!-- 
-<style>
+
+<!-- <style>
     .bookmark-list {
         display: contents;
         list-style: none;
