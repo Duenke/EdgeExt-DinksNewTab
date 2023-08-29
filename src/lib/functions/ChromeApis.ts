@@ -1,10 +1,8 @@
-import type { BookmarkTreeNode } from "$lib/types/ChromeTypes"
+import { mockTopLevelNodeTree, type BookmarkTreeNode } from "$lib/types/ChromeTypes"
 
 export async function getBrowserData(): Promise<BookmarkTreeNode[]> {
-	// const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(
-	// 	mockTopLevelNodeTree
-	// );
-	const topLevelNodeTree: BookmarkTreeNode[] = (await chrome.bookmarks.getTree()) as BookmarkTreeNode[]
+	const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(mockTopLevelNodeTree)
+	// const topLevelNodeTree: BookmarkTreeNode[] = (await chrome.bookmarks.getTree()) as BookmarkTreeNode[]
 
 	let folderNodes: BookmarkTreeNode[] = getFoldersFromNodeTree(topLevelNodeTree[0])
 
