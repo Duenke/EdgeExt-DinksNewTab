@@ -7,15 +7,13 @@
 	let bookmarkData: BookmarkTreeNode[] = folderData.children!.filter((child) => child.url)
 </script>
 
-{#if folderData.title || bookmarkData.length > 0}
-	<div class="card card-bordered w-96 bg-base-100 shadow-xl">
-		<div class="card-body">
-			<h2 class="card-title">{folderData.title}</h2>
-			<div class="card-accent"></div>
-			<BookmarkList bookmarkData="{bookmarkData}" />
-		</div>
+<div class="card card-bordered w-96 bg-base-100 shadow-xl">
+	<div class="card-body">
+		<h2 class="card-title">{folderData.title}</h2>
+		<div class="card-accent"></div>
+		<BookmarkList bookmarkData="{bookmarkData}" />
 	</div>
-{/if}
+</div>
 
 <style>
 	.card-accent {

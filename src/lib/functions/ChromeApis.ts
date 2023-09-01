@@ -4,7 +4,7 @@ export async function getBrowserData(): Promise<BookmarkTreeNode[]> {
 	const topLevelNodeTree: BookmarkTreeNode[] = await Promise.resolve(mockTopLevelNodeTree)
 	// const topLevelNodeTree: BookmarkTreeNode[] = (await chrome.bookmarks.getTree()) as BookmarkTreeNode[]
 
-	let folderNodes: BookmarkTreeNode[] = getFoldersFromNodeTree(topLevelNodeTree[0])
+	let folderNodes: BookmarkTreeNode[] = getFoldersFromNodeTree(topLevelNodeTree[0]).filter((node) => node.title || node.children!.length > 0)
 
 	// folderNodes = $sort.sortFunction(folderNodes);
 
